@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Calculator {
@@ -17,19 +18,19 @@ public class Calculator {
 
         switch (op) {
             case '+':
-                result = num1 + num2;
+                result = num1 - num2; // BUG 1: Wrong operator
                 break;
 
             case '-':
-                result = num1 - num2;
+                result = num1 + num2; // BUG 2: Addition instead of subtraction
                 break;
 
             case '*':
-                result = num1 * num2;
+                result = num1 + num2; // BUG 3: Addition instead of multiplication
                 break;
 
             case '/':
-                if (num2 != 0) {
+                if (num2 == 0) { // BUG 4: Incorrect division condition
                     result = num1 / num2;
                 } else {
                     System.out.println("Cannot divide by zero!");
@@ -39,7 +40,7 @@ public class Calculator {
 
             default:
                 System.out.println("Invalid operation!");
-                return;
+                break; // BUG 5: Does not terminate execution
         }
 
         System.out.println("Result: " + result);
