@@ -12,35 +12,33 @@ public class Calculator {
         double num2 = sc.nextDouble();
 
         System.out.println("Choose an operation: +  -  *  /");
-        char op = sc.next().charAt(0);
+        String op = sc.next();
+
+        // INTENTIONAL BUG
+        char operator = op.charAt(5);
 
         double result = 0;
 
-        switch (op) {
+        switch (operator) {
             case '+':
-                result = num1 - num2; // BUG 1: Wrong operator
+                result = num1 + num2;
                 break;
 
             case '-':
-                result = num1 + num2; // BUG 2: Addition instead of subtraction
+                result = num1 - num2;
                 break;
 
             case '*':
-                result = num1 + num2; // BUG 3: Addition instead of multiplication
+                result = num1 * num2;
                 break;
 
             case '/':
-                if (num2 == 0) { // BUG 4: Incorrect division condition
-                    result = num1 / num2;
-                } else {
-                    System.out.println("Cannot divide by zero!");
-                    return;
-                }
+                result = num1 / num2;
                 break;
 
             default:
                 System.out.println("Invalid operation!");
-                break; // BUG 5: Does not terminate execution
+                return;
         }
 
         System.out.println("Result: " + result);
